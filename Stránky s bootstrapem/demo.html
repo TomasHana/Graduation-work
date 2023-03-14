@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    <link rel="stylesheet" href="styl.css" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- skript pro grafy-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <title>Demo</title>
+  </head>
+  <body>
+    <div class="jumbotron text-center">
+      <h1 class="display-4">Fiktivní stránky</h1>
+      <h3>Váš účet</h3>
+      <p>Podklad dlouhodobé maturitní práce</p>
+    </div>
+    <!-- menu -->
+    <div
+      class="navbar navbar-expand-sm justify-content-end bg-dark navbar-dark "
+    >
+      <ul class="navbar-nav">
+        <li class=" nav-item">
+          <a class="navbar-brand" href="home.html">Home</a>
+        </li>
+        <li class=" nav-item">
+          <a class="nav-link" href="ib.html">Internetové bankovnictví</a>
+        </li>
+        <li class="nav-item">
+          <div class="dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+              Rychlý přístup</a
+            >
+
+            <div class="dropdown-menu">
+              <a
+                class="dropdown-item"
+                href="#"
+                onclick="return platby(), zobrazv()"
+                >Vložit peníze
+              </a>
+              <a
+                class="dropdown-item"
+                href="#"
+                onclick="return platby(), zobrazvy()"
+                >Vybrat peníze</a
+              >
+              <a
+                class="dropdown-item"
+                href="#"
+                onclick="return platby(), nplatba()"
+                >Nová platba</a
+              >
+              <a
+                class="dropdown-item"
+                href="#"
+                onclick="return platby(), tplatba()"
+                >Trvalý příkaz</a
+              >
+              <a class="dropdown-item" href="#" onclick="return vypis()"
+                >Zobrazit výpis</a
+              >
+            </div>
+            <!--dropdown menu-->
+          </div>
+          <!--dropdown-->
+        </li>
+      </ul>
+    </div>
+    <!--menu-->
+
+    <!-- postranní navbar-->
+    <div
+      class="container"
+      style="margin-left: 10px; margin-top: 10px; font-size: medium;"
+    >
+      <div class="row">
+        <div class="col-sm-4">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <i class="material-icons">portrait</i>
+              <a
+                href="#"
+                style="text-decoration: none;"
+                onclick="return info()"
+              >
+                Uživatel</a
+              >
+            </li>
+            <li class="nav-item">
+              <i class="material-icons">trending_up</i>
+              <a
+                href="#"
+                style="text-decoration: none;"
+                onclick="return grafy()"
+              >
+                Správce financí</a
+              >
+            </li>
+            <li class="nav-item">
+              <i class="material-icons">attach_money</i>
+              <a
+                href="#"
+                style="text-decoration: none;"
+                onclick="return platby()"
+              >
+                Platby
+              </a>
+            </li>
+            <li class="nav-item">
+              <i class="material-icons">exit_to_app</i>
+              <a
+                href="#"
+                style="text-decoration: none;"
+                onclick="return objednavka()"
+                >Objednávka</a
+              >
+            </li>
+          </ul>
+        </div>
+        <!--col-4-->
+        <div class="col-sm-8">
+          <!-- informace o účtu -->
+
+          <div id="info" style="text-align: center; ;">
+            <div class="shadow-sm p-4 mb-4 bg-white">
+              <h3>Informace o účtu</h3>
+              <b> Jméno uživatele</b>
+              <p id="juctu"></p>
+
+              <b> Číslo účtu</b>
+              <p id="cislouctu"></p>
+
+              <b> Částka na účtu</b>
+              <p id="castkanau"></p>
+
+              <b> Název banky</b>
+              <p id="nb"></p>
+            </div>
+            <!--taky info-->
+          </div>
+          <!--#info-->
+        </div>
+        <!--Objednávkový formulář -->
+        <div
+          class="form-group "
+          style="width: 500px; margin: 50%; margin-top: 5%; display: none;"
+          id="objednavka"
+        >
+          <form method="GET" action="/demo.html" name="objednavkovyform">
+            <h2>Objednávkový formulář</h2>
+            <input
+              type="text"
+              class="form-control form-control-md"
+              placeholder="Jméno"
+              name="objjmeno"
+            />
+            <input
+              type="text"
+              class="form-control form-control-md"
+              placeholder="Příjmení"
+              name="objprijmeni"
+            />
+            <input
+              type="email"
+              class="form-control form-control-md"
+              placeholder="Email"
+              name="objemail"
+            />
+            <br />
+            <input
+              style="margin-top: 10px"
+              type="submit"
+              class="btn btn-outline-success"
+              value="Objednat"
+              onclick="return potvrzeni()"
+            />
+          </form>
+        </div>
+        <!--col-8-->
+      </div>
+      <!--row-->
+    </div>
+    <!--postraní navbar-->
+
+    <!--grafy-->
+    <div class="container">
+      <canvas id="MyChart" width="3" style=" display: none;"></canvas>
+    </div>
+    <!--#grafy-->
+    <!--container-->
+    <!--Platby-->
+    <div class="platba" id="platba" style=" display: none;">
+      <!--vklad-->
+      <div class="card-columns">
+        <div class="card shadow-sm" style="width:250px;">
+          <img
+            class="card-img-top"
+            src="/image/absolutvision-uCMKx2H1Y38-unsplash.jpg"
+            alt=""
+          />
+          <div class="card-body">
+            <h3 class="card-title">Vklad</h3>
+            <p class="card-text">
+              V této sekci můžete simulovat jednoduché vklady na váš účet
+            </p>
+            <div
+              class="form-group"
+              id="divvklad"
+              style="display: none;width: 260px; margin: auto;"
+            >
+              <label for="vklad">Zadej částku k vložení</label><br />
+              <input type="text" name="vklad" id="vklad" /><br />
+              <button
+                class="btn btn-outline-success"
+                style="margin-top: 15px;"
+                onclick="return vklad()"
+              >
+                Vložit
+              </button>
+              <br />
+            </div>
+            <button onclick="return zobrazv()" class="btn btn-outline-dark">
+              Zadat částku
+            </button>
+          </div>
+        </div>
+
+        <!--Výběr-->
+        <div class="card shadow-sm" style="width:250px;">
+          <img
+            class="card-img-top"
+            src="/image/imelda-GcnPjvqRL18-unsplash.jpg"
+            alt="Card image"
+          />
+          <div class="card-body">
+            <h3 class="card-title">Výběr</h3>
+            <p class="card-text">
+              V této sekci můžete simulovat jednoduché vyběry na vašeho účetu
+            </p>
+            <div
+              class="vyber"
+              id="divvyber"
+              style="display: none; width: 260px; margin: auto;"
+            >
+              <label for="vyber">Zadej částku k výběru</label><br />
+              <input type="text" name="vyber" id="vyber" /><br />
+              <button
+                class="btn btn-outline-success"
+                style="margin-top: 15px;"
+                onclick="return vyber()"
+              >
+                Vyber
+              </button>
+            </div>
+            <button onclick="return zobrazvy()" class="btn btn-outline-dark">
+              Zadat částku
+            </button>
+          </div>
+        </div>
+      </div>
+      <!--Jednorázová -->
+      <div class="card-columns">
+        <div class="card shadow-sm" style="width:250px;">
+          <img
+            class="card-img-top"
+            src="/image/josh-appel-NeTPASr-bmQ-unsplash.jpg"
+            alt="Card image"
+          />
+          <div class="card-body">
+            <h3 class="card-title">Jednorázová platba</h3>
+            <p class="card-text">
+              Vyzkoušejte si jaké to je posílat peníze svým přátelům stiskem
+              jednoho tlačítka
+            </p>
+            <div
+              class="novaplatba"
+              id="divplatba"
+              style="display: none; width: 260px; margin: auto;"
+            >
+              <label for="novaplatba">Zadej částku k odeslání</label><br />
+              <input type="text" name="novaplatba" id="novaplatba" /><br />
+              <label for="novaplatba">Číslo účetu příjemce</label><br />
+              <input type="text" name="ucetprijemce" id="ucetprijemce" /><br />
+              <button
+                class="btn btn-outline-success"
+                style="margin-top: 15px;"
+                onclick="return novaplatba()"
+              >
+                Odeslat
+              </button>
+            </div>
+            <button onclick="return nplatba()" class="btn btn-outline-dark">
+              Zadat platbu
+            </button>
+          </div>
+        </div>
+        <!--Travalý příkaz-->
+        <div class="card shadow-sm" style="width:250px;">
+          <img
+            class="card-img-top"
+            src="/image/christian-dubovan-Y_x747Yshlw-unsplash.jpg"
+            alt="Card image"
+          />
+          <div class="card-body">
+            <h3 class="card-title">Trvalý příkaz</h3>
+            <p class="card-text">
+              Znáte to jak můsíte každý měsíc platit za telefon, dětem za obědy
+              atd...? Já ne. Využívám možnosti trvalého příkazu.
+            </p>
+            <div
+              class="tplatba"
+              id="divtplatba"
+              style="display: none;width: 260px; margin: auto;"
+            >
+              <label for="tplatba">Zadej částku k odeslání</label><br />
+              <input type="text" name="tplatba" id="tplatba" /><br />
+              <label for="ucetprijemce1">Číslo účetu příjemce</label><br />
+              <input
+                type="text"
+                name="ucetprijemce1"
+                id="ucetprijemce1"
+              /><br />
+              <label for="datum">Datum první platby</label><br />
+              <input type="date" name="datum" id="datum" /><br />
+              <button
+                class="btn btn-outline-success"
+                style="margin-top: 15px;"
+                onclick="return trvalyprikaz()"
+              >
+                Odeslat
+              </button>
+            </div>
+            <a onclick="return tplatba()" class="btn btn-outline-dark"
+              >Vytvořit trvalý příkaz</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

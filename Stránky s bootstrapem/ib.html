@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    <link rel="stylesheet" href="styl.css" />
+    <title>Internetové bankovnictví</title>
+  </head>
+  <body>
+    <div class="jumbotron text-center">
+      <h1 class="display-4">Fiktivní stránky</h1>
+      <h3>Naše internetové bankovnictví</h3>
+      <p>Podklad dlouhodobé maturitní práce</p>
+    </div>
+    <!-- menu-->
+    <div
+      class="navbar navbar-expand-sm justify-content-end bg-dark navbar-dark "
+    >
+      <ul class="navbar-nav">
+        <a class="navbar-brand" href="home.html">Home</a>
+        <a class="nav-link" href="ib.html">Internetové bankovnictví</a>
+      </ul>
+    </div>
+    <!--Přihlášení-->
+    <div class="form-group " style="width: 500px; margin: auto;margin-top: 5%;">
+      <h1>Vítejte</h1>
+      <p>Pro přihlášení k fiktivnímu účtu stačí zadat Vaše jméno</p>
+      <form
+        action="/demo.html"
+        onsubmit=" return data()"
+        class="form"
+        name="form"
+        method="GET"
+      >
+        <input
+          class="form-control form-control-md"
+          type="text"
+          name="inp"
+          id="prihlas"
+          placeholder="Jméno"
+        />
+        <br />
+        <input
+          class="btn btn-outline-success"
+          type="submit"
+          value="Přihlásit"
+        />
+      </form>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
